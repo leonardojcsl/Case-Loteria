@@ -7,7 +7,7 @@ import Select from '@mui/material/Select';
 
 export default function SelectLotteries() {
   
-  const [lotteries, setLotteries] = React.useState('');
+  const [lotteries, setLotteries] = React.useState();
 
   const handleChange = (event) => {
     setLotteries(event.target.value);

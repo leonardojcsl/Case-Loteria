@@ -1,4 +1,6 @@
+
 const Quina = () => {
+
     return (
         <div>
             Quina
