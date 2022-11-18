@@ -1,7 +1,6 @@
 import axios from "axios"
 import NumeroSorteio, { BASE_URL } from "../constants"
 import { useState, useEffect } from 'react'
-import { GameNumberDate, GameTitle, GeneralContainer, LeftCol, NumbersWrap, Obs, RightCol, Title, TitleWrap } from "./MegaSenaStyled"
 
 const MegaSena = () => {
 
@@ -48,33 +47,33 @@ const MegaSena = () => {
     const formatedDate = data.toLocaleDateString("pt-BR", { timeZone: "UTC" })
   
     return (
-      <GeneralContainer>
-        <LeftCol></LeftCol>
-        <TitleWrap>
-          <Title>MEGA SENA</Title>
-        </TitleWrap>
-        <GameTitle>
+      <main>
+        <div>Coluna Esquerda</div>
+        <div>
+          <h1>MEGA SENA</h1>
+        </div>
+        <div>
           <p>CONCURSO  {concursos.id}</p>
-        </GameTitle>
-        <GameNumberDate>
+        </div>
+        <div>
           <p>
            {data && formatedDate}
           </p>
-        </GameNumberDate>
-        <RightCol>
-          <NumbersWrap>
+        </div>
+        <div>
+          <div>
             <ul>
               {concursos.numeros &&
                 concursos.numeros.map((item) => (
                   <NumeroSorteio numbers={item} key={item} />
                 ))}
             </ul>
-          </NumbersWrap>
-          <Obs>
+          </div>
+          <div>
             Este sorteio é meramente ilustrativo.
-          </Obs>
-        </RightCol>
-      </GeneralContainer>
+          </div>
+        </div>
+      </main>
     )
 }
 

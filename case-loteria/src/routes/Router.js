@@ -6,12 +6,14 @@ import LotoMania from "../pages/LotoMania"
 import Quina from "../pages/Quina"
 import TimeMania from "../pages/TimeMania"
 import Header from "../components/Header"
+import SelectLotteries from "../components/SelectLotteries"
 
 
 const Router = () => {
     return (
         <BrowserRouter>
-            <Header/>
+            <Header />
+            <SelectLotteries/>
             <Routes>
                 <Route exact path="/" element={<MegaSena />} />
                 <Route exact path="/quina/:id" element={<Quina />} />

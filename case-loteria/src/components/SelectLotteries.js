@@ -1,34 +1,15 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import MegaSena from "../pages/MegaSena"
+import Quina from "../pages/Quina"
+import TimeMania from "../pages/TimeMania"
 
-export default function SelectLotteries() {
-  
-  const [lotteries, setLotteries] = React.useState();
-
-  const handleChange = (event) => {
-    setLotteries(event.target.value);
-  };
-
-  return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Loterias</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={lotteries}
-          label="Loterias"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Mega-Sena</MenuItem>
-          <MenuItem value={20}>Quina</MenuItem>
-          <MenuItem value={30}>Loto Mania</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
+const SelectLotteries = () => { 
+  return ( 
+    <select>
+      <item>Quina</item>
+      <item>LotoFacil</item>
+      <item>Time Manias</item>
+    </select>
+  )
 }
+
+export default SelectLotteries
