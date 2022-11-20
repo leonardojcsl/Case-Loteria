@@ -1,8 +1,81 @@
+import axios from "axios"
+import NumeroSorteio, { BASE_URL } from "../constants"
+import { useState, useEffect } from 'react'
+
 const LotoFacil = () => {
-    return (
+
+  const [relacaoConcurso, setRelacaoConcurso] = useState([])
+  const [concursoId, setConcursoId] = useState("")
+  const [concursos, setConcursos] = useState([])
+
+  const getRelacaoConcursos = () => {
+    axios
+      .get(`${BASE_URL}/loterias-concursos`)
+      .then((res) => {
+        setRelacaoConcurso(res.data[2])
+        if (relacaoConcurso) {
+          setConcursoId(res.data[2].concursoId)
+        }
+
+        
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  console.log(relacaoConcurso)
+
+  const getConcursosById = (id) => {
+    axios
+      .get(`${BASE_URL}/concursos/${id}`)
+      .then((res) => {
+        setConcursos(res.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  useEffect(() => {
+    getRelacaoConcursos()
+  }, [])
+
+  useEffect(() => {
+    if (concursoId) getConcursosById(concursoId)
+  }, [concursoId])
+
+  const data = new Date(concursos?.data)
+  const formatedDate = data.toLocaleDateString("pt-BR", { timeZone: "UTC" })
+
+  return (
+    <main>
+        <div>Coluna Esquerda</div>
         <div>
-            Loto Facil
+          <h1>Loto Facil</h1>
         </div>
+        <div>
+          <p>CONCURSO  {concursos.id}</p>
+          </div>
+        <div>
+          <p>
+           {data && formatedDate}
+          </p>
+          </div>
+        <div>
+          <div>
+            <ul>
+              {concursos.numeros &&
+                concursos.numeros.map((item) => (
+                  <NumeroSorteio numbers={item} key={item} />
+                ))}
+            </ul>
+            </div>
+          <div>
+            Este sorteio é meramente ilustrativo.
+            </div>
+        </div>
+      </main>
     )
 }
 
